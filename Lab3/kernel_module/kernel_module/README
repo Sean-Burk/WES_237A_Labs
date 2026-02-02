@@ -1,0 +1,19 @@
+*** Make sure `pwd` does not contain any space ***
+
+To compile:
+ sudo make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -C /lib/modules/$(uname -r)/build M=$(pwd) modules
+
+To clean:
+ sudo make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -C /lib/modules/$(uname -r)/build M=$(pwd) clean
+
+To insert module onto cpu0:
+ insmod CPUcntr.ko
+ insmod CPUcntr.ko
+
+To remove module:
+ rmmod CPUcntr.ko
+ rmmod CPUcntr.ko
+
+To check module:
+ dmesg | tail -1
+
