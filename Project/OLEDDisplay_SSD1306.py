@@ -222,9 +222,16 @@ class OLEDDisplay():
             y += x//128
             x = x%128
             y = y % 8
-            print(x, y)
             a = ord(c)-32
             if a<0 or a>95:
-                a=0 # default to space
+                a = 0 # default to space
             self._write_symbol(BasicFont[a], x, y)
             x+=8
+
+if __name__ == "__main__":
+    from pynq.overlays.base import BaseOverlay
+    base = BaseOverlay("base.bit")
+    disp = OLEDDisplay(base.PMODA)
+    disp.connect()
+    disp.write_basic_str("  Hello world!  blabla")
+    disp.flush()
