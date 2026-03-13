@@ -14,8 +14,8 @@
 // Temp defines
 #define DATA_RATE_HZ 10
 #define IR_PULSE_RATE 36*100 // this is equivelent to approx 38KHz
-#define PULSE_WIDTH_US 500
-#define PULSE_SPACE_US 500
+#define PULSE_WIDTH_US 200
+#define PULSE_SPACE_US 300
 
 /*
  * TIMING_INTERVAL = (TLRx + 2) * AXI_CLOCK_PERIOD
@@ -79,10 +79,10 @@ int read_ir(u8 buffer[64], u32 read_len, u32* err){
     old = 0; 
     while(gpio_read(receiver_gpio)){}
     while(1){
-        blocking_wait_us(100);
+        blocking_wait_us(10);
         new = gpio_read(receiver_gpio);
-        if(new)
-            pulse_space_count+=100;
+        if(new) // we incriment by a few extra usec to make up for gpio reat time
+            pulse_space_count+=12;
         if(old<new){
             // Falling edge
             pulse_space_count=0;
