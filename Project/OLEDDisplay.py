@@ -248,8 +248,8 @@ class OLEDDisplay():
     def display_jpg(self, img):
         img = img.resize((self.display_width, self.display_height))
         img = img.convert('1')
-        disp.buffer[:] = self.remap_for_display(img.tobytes())
-        disp.flush()
+        self.buffer[:] = self.remap_for_display(img.tobytes())
+        self.flush()
 
 # example usage
 if __name__=="__main__":
