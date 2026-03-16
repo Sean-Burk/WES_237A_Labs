@@ -241,6 +241,7 @@ class OLEDDisplay():
         # represents a vertical slice 8 pixels tall
         bitmap = np.frombuffer(bitmap, dtype=np.uint8).reshape(self.display_height,self.display_width//8)
         bitmap = np.unpackbits(bitmap, axis=1)
+        bitmap = np.flip(bitmap)
         bitmap = np.packbits(bitmap, axis=0)
         bitmap = np.flip(bitmap)
         return bytearray(bitmap)

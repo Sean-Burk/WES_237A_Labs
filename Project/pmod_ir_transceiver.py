@@ -158,8 +158,8 @@ class Pmod_IRTransceiver(object):
 
         if read_len <= 0:
             raise ValueError("real len must be positive number")
-        if read_len > 16:
-            raise ValueError("max read lenght 16 bytes")
+        if read_len > 20:
+            raise ValueError("max read lenght 20 bytes")
         self.microblaze.write_mailbox(0, read_len)
         self.microblaze.write_non_blocking_command(READ)
         while self.microblaze.read(MAILBOX_OFFSET + MAILBOX_PY2IOP_CMD_OFFSET) != 0:
